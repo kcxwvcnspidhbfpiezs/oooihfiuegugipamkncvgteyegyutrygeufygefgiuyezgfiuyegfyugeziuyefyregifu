@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — BTS SIO SLAM</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+ :root {
+  --bg: #e9e3d7;
+  --bg-2: #dfe7e8;
+  --surface: rgba(255, 252, 246, 0.90);
+  --surface-strong: #fffaf1;
+  --surface-soft: #f3eee5;
+  --border: #cfc6b8;
+  --border-strong: #a99d8d;
+  --text: #1f2933;
+  --text-2: #4d5a66;
+  --text-3: #76818c;
+  --accent: #2563eb;
+  --accent-2: #0f766e;
+  --accent-light: #e7f0ff;
+  --accent-mid: #a9c3f8;
+  --green: #0f766e;
+  --green-light: #e2f3ef;
+  --amber: #a16207;
+  --amber-light: #f8efd9;
+  --red: #b91c1c;
+  --shadow: 0 18px 55px rgba(31, 41, 51, 0.12);
+  --shadow-sm: 0 8px 25px rgba(31, 41, 51, 0.09);
+  --nav-h: 64px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  background:
+    radial-gradient(circle at 10% -4%, rgba(37,99,235,0.16), transparent 30%),
+    radial-gradient(circle at 86% 8%, rgba(15,118,110,0.14), transparent 32%),
+    linear-gradient(135deg, #e9e3d7 0%, #edf0ec 48%, #dfe7e8 100%);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(31,41,51,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,41,51,0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+/* NAV */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  height: var(--nav-h);
+  background: rgba(255, 250, 241, 0.78);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(169, 157, 141, 0.35);
+  display: flex; align-items: center;
+  padding: 0 2rem;
+  z-index: 100;
+  justify-content: space-between;
+}
+.nav-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--text-2);
+  letter-spacing: 0.3px;
+}
+.nav-brand strong { color: var(--text); font-weight: 500; }
+.nav-links { display: flex; gap: 2px; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--text-2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+  font-weight: 400;
+}
+.nav-links a:hover { background: var(--border); color: var(--text); }
+.nav-links a.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fffaf1; box-shadow: 0 6px 18px rgba(37,99,235,0.20); }
+
+/* PAGES */
+.page { display: none; min-height: 100vh; padding-top: var(--nav-h); }
+.page.active { display: block; }
+
+.wrap { max-width: 1020px; margin: 0 auto; padding: 4.5rem 2rem; }
+.wrap-sm { max-width: 920px; margin: 0 auto; padding: 4.5rem 2rem; }
+
+/* PAGE HEADER */
+.page-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.5rem;
+}
+.page-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+.page-title em { font-style: italic; color: var(--text-2); }
+.page-desc {
+  color: var(--text-2);
+  font-size: 15px;
+  max-width: 520px;
+  margin-bottom: 3rem;
+}
+.divider {
+  width: 100%; height: 1px;
+  background: var(--border); margin: 2.5rem 0;
+}
+
+/* ======================== ACCUEIL ======================== */
+#page-accueil .wrap-sm {
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+.hero-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-3);
+  border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 4px;
+  margin-bottom: 2rem;
+}
+.hero-label::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+}
+.hero-h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+.hero-h1 span { color: var(--text-2); }
+.hero-p {
+  font-size: 16px; color: var(--text-2);
+  max-width: 480px; line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+.hero-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) 320px;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.hero-main, .hero-card {
+  background: var(--surface);
+  border: 1px solid rgba(169,157,141,0.42);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 4vw, 2.4rem);
+  box-shadow: var(--shadow);
+}
+.hero-card {
+  background:
+    linear-gradient(145deg, rgba(49,87,213,0.10), rgba(109,40,217,0.10)),
+    rgba(255,250,241,0.84);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-card::before {
+  content: '{}';
+  position: absolute;
+  top: 22px; right: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 5.2rem;
+  color: rgba(49,87,213,0.09);
+}
+.hc-kicker { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); margin-bottom: 0.6rem; }
+.hc-title { font-family: 'Instrument Serif', serif; font-size: 1.85rem; line-height: 1; margin-bottom: 0.8rem; }
+.hero-card p { color: var(--text-2); font-size: 13px; line-height: 1.65; }
+.hc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 1.2rem; }
+.hc-tags span { font-family: 'DM Mono', monospace; font-size: 10px; padding: 4px 8px; border: 1px solid var(--accent-mid); color: var(--accent); border-radius: 999px; background: rgba(255,250,241,0.72); }
+
+.btn {
+  font-size: 13px; font-weight: 500;
+  padding: 8px 18px; border-radius: 7px;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.15s; display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-dark {
+  background: var(--text); color: var(--bg);
+  border: 1px solid var(--text);
+}
+.btn-dark:hover { background: #333; }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-2);
+}
+.btn-ghost:hover { border-color: var(--text); color: var(--text); }
+
+.hero-stats {
+  display: flex; gap: 0; margin-top: 4rem;
+  border: 1px solid var(--border);
+  border-radius: 18px; overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.hero-stat {
+  flex: 1; padding: 1.1rem 1.25rem;
+  border-right: 1px solid var(--border);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-n {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.8rem; font-weight: 400;
+  line-height: 1; margin-bottom: 2px;
+}
+.hero-stat-l { font-size: 12px; color: var(--text-3); }
+
+/* ======================== COMPETENCES ======================== */
+.skills-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.skills-nav { border-right: 1px solid var(--border); }
+.skill-tab {
+  padding: 0.85rem 1.25rem;
+  font-size: 13px; color: var(--text-2);
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s, color 0.12s;
+  display: flex; align-items: center; gap: 8px;
+}
+.skill-tab:last-child { border-bottom: none; }
+.skill-tab:hover { background: var(--bg); color: var(--text); }
+.skill-tab.active { background: var(--bg); color: var(--text); font-weight: 500; }
+.skill-tab.active::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0;
+  width: 2px; background: var(--accent);
+}
+.skills-nav { position: relative; }
+.skill-tab { position: relative; }
+
+.skills-content { padding: 2rem; }
+.skill-panel { display: none; }
+.skill-panel.active { display: block; }
+
+.skill-panel-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem; margin-bottom: 0.25rem;
+}
+.skill-panel-sub { font-size: 13px; color: var(--text-3); margin-bottom: 1.75rem; }
+
+.skill-row { margin-bottom: 1.1rem; }
+.skill-row-top {
+  display: flex; justify-content: space-between;
+  font-size: 13px; margin-bottom: 6px;
+}
+.skill-row-top span:first-child { color: var(--text); }
+.skill-row-top span:last-child {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--text-3);
+}
+.bar-track {
+  height: 3px; background: var(--border);
+  border-radius: 2px; overflow: hidden;
+}
+.bar-fill {
+  height: 100%; border-radius: 2px;
+  background: var(--text);
+  width: 0%; transition: width 0.9s cubic-bezier(.4,0,.2,1);
+}
+
+.tag-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.5rem; }
+.tag {
+  font-size: 12px;
+  padding: 3px 9px; border-radius: 5px;
+  border: 1px solid var(--border);
+  color: var(--text-2); background: var(--bg);
+}
+.tag.blue { background: var(--accent-light); border-color: var(--accent-mid); color: var(--accent); }
+.tag.green { background: var(--green-light); border-color: #bbf7d0; color: var(--green); }
+
+/* ======================== STAGE ======================== */
+.stage-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 18px; overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.stage-meta {
+  background: var(--surface); padding: 1.25rem 1.5rem;
+}
+.meta-key {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 3px;
+}
+.meta-val { font-size: 14px; font-weight: 500; color: var(--text); }
+.meta-sub { font-size: 12px; color: var(--text-3); margin-top: 1px; }
+
+.progress-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.progress-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.progress-label { font-size: 14px; font-weight: 500; }
+.progress-pct {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px; font-weight: 500; color: var(--text);
+  line-height: 1;
+}
+.progress-track {
+  height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+.progress-fill {
+  height: 100%; border-radius: 2px; background: var(--text);
+  width: 0%; transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.progress-dates {
+  display: flex; justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--text-3);
+}
+
+.journal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 1rem;
+}
+.journal-ht { font-size: 14px; font-weight: 500; }
+
+.entry {
+  display: grid; grid-template-columns: 90px 1fr auto;
+  gap: 1.25rem; align-items: start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.entry:first-child { padding-top: 0; }
+.entry:last-child { border-bottom: none; }
+
+.entry-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--text-3);
+  padding-top: 2px; line-height: 1.5;
+}
+.entry-t { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+.entry-d { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.5px;
+  padding: 3px 8px; border-radius: 4px;
+  white-space: nowrap; margin-top: 2px;
+}
+.chip-done { background: var(--green-light); color: var(--green); }
+.chip-doing { background: var(--accent-light); color: var(--accent); }
+.chip-todo { background: var(--amber-light); color: var(--amber); }
+
+.add-btn {
+  width: 100%; margin-top: 1rem;
+  padding: 10px; border-radius: 8px;
+  border: 1px dashed var(--border-strong);
+  background: none; cursor: pointer;
+  font-size: 13px; color: var(--text-3);
+  transition: all 0.15s; font-family: 'DM Sans', sans-serif;
+}
+.add-btn:hover { border-color: var(--text); color: var(--text); background: var(--bg); }
+
+.entry-form {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.25rem; margin-top: 0.75rem;
+  display: none;
+}
+.entry-form.open { display: block; }
+.entry-form input, .entry-form textarea, .entry-form select {
+  width: 100%; font-family: 'DM Sans', sans-serif; font-size: 13px;
+  padding: 8px 10px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--text); outline: none; margin-bottom: 8px;
+  transition: border-color 0.15s;
+}
+.entry-form input:focus, .entry-form textarea:focus, .entry-form select:focus {
+  border-color: var(--text);
+}
+.entry-form textarea { min-height: 72px; resize: vertical; }
+.entry-form select option { background: white; }
+.form-row { display: flex; gap: 8px; }
+.form-row input, .form-row select { margin-bottom: 0; }
+.form-btns { display: flex; gap: 6px; justify-content: flex-end; margin-top: 4px; }
+.btn-xs {
+  font-size: 12px; padding: 6px 14px; border-radius: 6px;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.btn-xs-dark { background: var(--text); color: var(--bg); border: 1px solid var(--text); }
+.btn-xs-ghost { background: none; border: 1px solid var(--border); color: var(--text-2); }
+.btn-xs-ghost:hover { border-color: var(--text); color: var(--text); }
+
+/* ======================== VEILLE ======================== */
+.veille-intro-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 1.75rem;
+  margin-bottom: 2rem;
+}
+.veille-intro-block h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.25rem; margin-bottom: 0.4rem;
+}
+.veille-intro-block p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+.veille-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.veille-card {
+  background: var(--surface); padding: 1.5rem;
+  transition: background 0.15s;
+}
+.veille-card:hover { background: var(--bg); }
+.vc-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 0.6rem;
+}
+.vc-title { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; }
+.vc-body { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.vc-footer {
+  margin-top: 1rem; padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.vc-source { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-3); }
+.vc-dots { display: flex; gap: 3px; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); }
+.dot.on { background: var(--text); }
+
+/* ======================== PROJETS ======================== */
+.project-list { display: flex; flex-direction: column; gap: 1px; }
+.project-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.75rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 1.5rem; align-items: start;
+  transition: background 0.15s;
+  cursor: default;
+}
+.project-item:not(:last-child) { margin-bottom: 0; border-radius: 0; border-bottom: none; }
+.project-item:first-child { border-radius: 10px 10px 0 0; }
+.project-item:last-child { border-radius: 0 0 10px 10px; }
+.project-item:only-child { border-radius: 10px; }
+.project-item:hover { background: var(--bg); }
+
+.proj-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 0.4rem;
+}
+.proj-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem; margin-bottom: 0.5rem;
+}
+.proj-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 1rem; }
+.proj-features { list-style: none; margin-bottom: 1rem; }
+.proj-features li {
+  font-size: 13px; color: var(--text-2);
+  padding: 2px 0 2px 14px; position: relative;
+}
+.proj-features li::before {
+  content: '–'; position: absolute; left: 0; color: var(--text-3);
+}
+.proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.proj-icon {
+  font-size: 2.5rem; flex-shrink: 0;
+  width: 70px; height: 70px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 12px; display: flex;
+  align-items: center; justify-content: center;
+}
+
+/* ======================== PROFIL ======================== */
+.profil-layout {
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 2rem; align-items: start;
+}
+.profil-aside {
+  background: var(--surface);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.5rem; text-align: center;
+  position: sticky; top: calc(var(--nav-h) + 1.5rem);
+}
+.avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.6rem; color: var(--text-2);
+  margin: 0 auto 1rem;
+}
+.profil-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.2rem; margin-bottom: 3px;
+}
+.profil-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--text-3); margin-bottom: 1.5rem;
+}
+.aside-rows { text-align: left; }
+.aside-row {
+  display: flex; flex-direction: column;
+  padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+}
+.aside-row:last-child { border-bottom: none; }
+.aside-key { font-size: 11px; color: var(--text-3); margin-bottom: 2px; }
+.aside-val { font-size: 13px; color: var(--text); }
+.aside-links { display: flex; gap: 6px; justify-content: center; margin-top: 1.25rem; flex-wrap: wrap; }
+.aside-link {
+  font-size: 12px; padding: 5px 12px; border-radius: 6px;
+  border: 1px solid var(--border); color: var(--text-2);
+  text-decoration: none; transition: all 0.15s;
+}
+.aside-link:hover { border-color: var(--text); color: var(--text); }
+
+.profil-main { display: flex; flex-direction: column; gap: 1.25rem; }
+.profil-block {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 18px; padding: 1.5rem;
+}
+.profil-block-title {
+  font-size: 13px; font-weight: 500;
+  margin-bottom: 0.9rem; color: var(--text);
+}
+.profil-block p { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+.timeline { position: relative; }
+.tl-item {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 1rem; padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.tl-item:last-child { border-bottom: none; padding-bottom: 0; }
+.tl-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-3); padding-top: 2px; }
+.tl-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.tl-sub { font-size: 12px; color: var(--text-3); }
+
+
+
+/* MODERN CARD FINISH */
+.skills-layout, .stage-top, .progress-block, .veille-intro-block, .project-item, .profil-block, .profil-aside {
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px);
+}
+.project-item, .veille-card, .stage-meta, .profil-block, .progress-block { background: var(--surface); }
+.project-item:hover, .veille-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.project-item, .veille-card { transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease; }
+
+.pq-hero {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(49,87,213,0.12), rgba(109,40,217,0.10)), var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+.pq-hero::after {
+  content: '01';
+  position: absolute;
+  right: 28px;
+  top: -12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8rem;
+  color: rgba(49,87,213,0.05);
+}
+.pq-kicker { font-family: 'DM Mono', monospace; color: var(--accent); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 0.5rem; }
+.pq-hero h3 { font-family: 'Instrument Serif', serif; font-size: 1.65rem; margin-bottom: 0.5rem; }
+.pq-hero p { color: var(--text-2); font-size: 14px; line-height: 1.7; max-width: 620px; }
+.pq-mini {
+  border: 1px solid var(--accent-mid);
+  border-radius: 18px;
+  padding: 1rem;
+  background: rgba(255,255,255,0.62);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.pq-mini span { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-3); }
+.pq-mini strong { font-family: 'Instrument Serif', serif; font-size: 2rem; line-height: 1; color: var(--accent); font-weight: 400; margin: 0.35rem 0; }
+.pq-mini small { color: var(--text-2); font-size: 12px; }
+
+@media (max-width: 800px) {
+  .hero-shell, .pq-hero { grid-template-columns: 1fr; }
+  .hero-card { min-height: auto; }
+}
+
+/* FADE */
+.fade { opacity: 0; transform: translateY(12px); transition: opacity 0.4s, transform 0.4s; }
+.fade.in { opacity: 1; transform: none; }
+
+
+/* ======================== THÈME ÉQUILIBRÉ ======================== */
+.hero-main, .hero-card, .skills-layout, .stage-meta, .progress-block, .profil-block, .profil-aside, .veille-intro-block, .veille-card, .project-item {
+  background: linear-gradient(180deg, rgba(255,252,246,0.94), rgba(248,242,232,0.90));
+  border-color: rgba(169,157,141,0.45);
+}
+.veille-card:hover, .project-item:hover, .skill-tab:hover { background: rgba(243,238,229,0.82); }
+.bar-track, .progress-track { background: rgba(169,157,141,0.30); }
+.bar-fill, .progress-fill { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.proj-icon, .avatar { background: linear-gradient(135deg, #f7efe1, #e4eeef); border-color: rgba(169,157,141,0.45); }
+.tag { background: rgba(243,238,229,0.88); border-color: rgba(169,157,141,0.45); }
+.tag.blue { background: rgba(37,99,235,0.10); border-color: rgba(37,99,235,0.25); color: #1d4ed8; }
+.tag.green { background: rgba(15,118,110,0.10); border-color: rgba(15,118,110,0.25); color: #0f766e; }
+.chip-done { background: rgba(15,118,110,0.12); color: #0f766e; }
+.chip-doing { background: rgba(37,99,235,0.12); color: #1d4ed8; }
+.chip-todo { background: rgba(161,98,7,0.13); color: #92400e; }
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .skills-layout { grid-template-columns: 1fr; }
+  .skills-nav { display: flex; overflow-x: auto; border-right: none; border-bottom: 1px solid var(--border); }
+  .skill-tab { border-bottom: none; border-right: 1px solid var(--border); white-space: nowrap; }
+  .profil-layout { grid-template-columns: 1fr; }
+  .profil-aside { position: static; }
+  .stage-top { grid-template-columns: 1fr; }
+  .project-item { grid-template-columns: 1fr; }
+  .proj-icon { display: none; }
+  .entry { grid-template-columns: 70px 1fr auto; }
+  nav { padding: 0 1rem; }
+  .nav-links { overflow-x: auto; }
+  .nav-links a { padding: 5px 8px; font-size: 12px; white-space: nowrap; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><strong>Adel LAROUCI</strong> — BTS SIO SLAM</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="go('accueil')" id="n-accueil" class="active">Accueil</a></li>
+    <li><a href="#" onclick="go('competences')" id="n-competences">Compétences</a></li>
+    <li><a href="#" onclick="go('stage')" id="n-stage">Stage</a></li>
+    <li><a href="#" onclick="go('veille')" id="n-veille">Veille</a></li>
+    <li><a href="#" onclick="go('projets')" id="n-projets">Projets</a></li>
+    <li><a href="#" onclick="go('profil')" id="n-profil">Profil</a></li>
+  </ul>
+</nav>
+
+<!-- ACCUEIL -->
+<div class="page active" id="page-accueil">
+  <div class="wrap-sm">
+    <div class="hero-shell fade">
+      <div class="hero-main">
+        <div class="hero-label">Portfolio BTS SIO · SLAM</div>
+        <h1 class="hero-h1">Développeur web,<br><span>orienté applications & sécurité</span></h1>
+        <p class="hero-p">Étudiant en BTS SIO option SLAM, je présente ici mes projets, mes compétences, mon parcours et ma veille technologique sur la cryptographie post-quantique.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-dark" onclick="go('projets')">Voir mes projets</a>
+          <a href="#" class="btn btn-ghost" onclick="go('veille')">Ma veille techno</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-kicker">Veille techno</div>
+        <div class="hc-title">Post-quantum cryptography</div>
+        <p>Comprendre comment les futurs ordinateurs quantiques pourraient fragiliser RSA/ECC, et comment les nouveaux algorithmes comme ML-KEM et ML-DSA préparent la transition.</p>
+        <div class="hc-tags"><span>PQC</span><span>NIST</span><span>TLS</span></div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">3</div>
+        <div class="hero-stat-l">Projets réalisés</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">8+</div>
+        <div class="hero-stat-l">Technologies</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">2 ans</div>
+        <div class="hero-stat-l">de formation</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">PQC</div>
+        <div class="hero-stat-l">Veille techno</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPÉTENCES -->
+<div class="page" id="page-competences">
+  <div class="wrap">
+    <div class="page-eyebrow">Compétences</div>
+    <h1 class="page-title">Ce que je <em>sais faire</em></h1>
+    <p class="page-desc">Langages, frameworks et méthodes acquis en formation et en projet.</p>
+
+    <div class="skills-layout">
+      <div class="skills-nav">
+        <div class="skill-tab active" onclick="switchTab('langages')">Langages</div>
+        <div class="skill-tab" onclick="switchTab('web')">Web & Base de données</div>
+        <div class="skill-tab" onclick="switchTab('methodes')">Méthodes</div>
+        <div class="skill-tab" onclick="switchTab('outils')">Outils</div>
+        <div class="skill-tab" onclick="switchTab('bts')">Compétences BTS</div>
+        <div class="skill-tab" onclick="switchTab('securite')">Sécurité</div>
+      </div>
+      <div class="skills-content">
+
+        <div class="skill-panel active" id="tab-langages">
+          <div class="skill-panel-title">Langages de programmation</div>
+          <div class="skill-panel-sub">Langages maîtrisés au cours des projets et de la formation.</div>
+          <div class="skill-row"><div class="skill-row-top"><span>Java</span><span>80 %</span></div><div class="bar-track"><div class="bar-fill" data-w="80"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>PHP</span><span>75 %</span></div><div class="bar-track"><div class="bar-fill" data-w="75"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>JavaScript</span><span>70 %</span></div><div class="bar-track"><div class="bar-fill" data-w="70"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Python</span><span>45 %</span></div><div class="bar-track"><div class="bar-fill" data-w="45"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>SQL</span><span>70 %</span></div><div class="bar-track"><div class="bar-fill" data-w="70"></div></div></div>
+        </div>
+
+        <div class="skill-panel" id="tab-web">
+          <div class="skill-panel-title">Web & Base de données</div>
+          <div class="skill-panel-sub">Technologies utilisées dans les projets web.</div>
+          <div class="skill-row"><div class="skill-row-top"><span>HTML / CSS</span><span>85 %</span></div><div class="bar-track"><div class="bar-fill" data-w="85"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>AJAX / Fetch API</span><span>65 %</span></div><div class="bar-track"><div class="bar-fill" data-w="65"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Bootstrap</span><span>70 %</span></div><div class="bar-track"><div class="bar-fill" data-w="70"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>MySQL</span><span>68 %</span></div><div class="bar-track"><div class="bar-fill" data-w="68"></div></div></div>
+        </div>
+
+        <div class="skill-panel" id="tab-methodes">
+          <div class="skill-panel-title">Méthodes & Paradigmes</div>
+          <div class="skill-panel-sub">Approches de développement appliquées.</div>
+          <div class="tag-grid">
+            <span class="tag blue">Programmation orientée objet</span>
+            <span class="tag blue">Pattern MVC</span>
+            <span class="tag">CRUD</span>
+            <span class="tag green">Agile / Scrum</span>
+            <span class="tag green">Git / GitHub</span>
+            <span class="tag">Merise</span>
+            <span class="tag">UML</span>
+            <span class="tag blue">REST API</span>
+            <span class="tag green">Design responsive</span>
+            <span class="tag">Design patterns</span>
+          </div>
+        </div>
+
+        <div class="skill-panel" id="tab-outils">
+          <div class="skill-panel-title">Environnements & Outils</div>
+          <div class="skill-panel-sub">Logiciels et environnements utilisés au quotidien.</div>
+          <div class="tag-grid">
+            <span class="tag">VS Code</span>
+            <span class="tag blue">IntelliJ IDEA</span>
+            <span class="tag">PHPMyAdmin</span>
+            <span class="tag">MySQL Workbench</span>
+            <span class="tag">XAMPP</span>
+            <span class="tag green">Git</span>
+            <span class="tag">Figma</span>
+            <span class="tag">Trello</span>
+            <span class="tag blue">Postman</span>
+            <span class="tag">Linux</span>
+          </div>
+        </div>
+
+        <div class="skill-panel" id="tab-bts">
+          <div class="skill-panel-title">Compétences référentiel BTS SIO</div>
+          <div class="skill-panel-sub">Blocs de compétences du référentiel officiel.</div>
+          <div class="skill-row"><div class="skill-row-top"><span>Gérer le patrimoine informatique</span><span>75 %</span></div><div class="bar-track"><div class="bar-fill" data-w="75"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Répondre aux incidents</span><span>65 %</span></div><div class="bar-track"><div class="bar-fill" data-w="65"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Développer la présence en ligne</span><span>80 %</span></div><div class="bar-track"><div class="bar-fill" data-w="80"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Travailler en mode projet</span><span>72 %</span></div><div class="bar-track"><div class="bar-fill" data-w="72"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Mettre à disposition des utilisateurs</span><span>68 %</span></div><div class="bar-track"><div class="bar-fill" data-w="68"></div></div></div>
+        </div>
+
+        <div class="skill-panel" id="tab-securite">
+          <div class="skill-panel-title">Sécurité & Cryptographie post-quantique</div>
+          <div class="skill-panel-sub">Notions acquises via la veille technologique et les cours.</div>
+          <div class="skill-row"><div class="skill-row-top"><span>Chiffrement symétrique (AES…)</span><span>60 %</span></div><div class="bar-track"><div class="bar-fill" data-w="60"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Chiffrement asymétrique (RSA…)</span><span>55 %</span></div><div class="bar-track"><div class="bar-fill" data-w="55"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Hachage SHA / MD5</span><span>65 %</span></div><div class="bar-track"><div class="bar-fill" data-w="65"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Protocoles TLS / HTTPS</span><span>58 %</span></div><div class="bar-track"><div class="bar-fill" data-w="58"></div></div></div>
+          <div class="skill-row"><div class="skill-row-top"><span>Cryptographie post-quantique</span><span>50 %</span></div><div class="bar-track"><div class="bar-fill" data-w="50"></div></div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAGE -->
+<div class="page" id="page-stage">
+  <div class="wrap">
+    <div class="page-eyebrow">Stage</div>
+    <h1 class="page-title">Tableau de bord <em>& suivi</em></h1>
+    <p class="page-desc">Informations sur le stage et carnet de suivi des activités réalisées.</p>
+
+    <div class="stage-top">
+      <div class="stage-meta">
+        <div class="meta-key">Entreprise</div>
+        <div class="meta-val">Nom de l'entreprise</div>
+        <div class="meta-sub">Secteur d'activité</div>
+      </div>
+      <div class="stage-meta">
+        <div class="meta-key">Maître de stage</div>
+        <div class="meta-val">Prénom NOM</div>
+        <div class="meta-sub">Poste occupé</div>
+      </div>
+      <div class="stage-meta">
+        <div class="meta-key">Période</div>
+        <div class="meta-val">18 Mai — 3 Juillet 2026</div>
+        <div class="meta-sub">7 semaines</div>
+      </div>
+      <div class="stage-meta">
+        <div class="meta-key">Mission principale</div>
+        <div class="meta-val">Développement d'une appli web</div>
+        <div class="meta-sub">PHP · JS · MySQL</div>
+      </div>
+    </div>
+
+    <div class="progress-block">
+      <div class="progress-header">
+        <div class="progress-label">Avancement du stage</div>
+        <div class="progress-pct" id="stage-pct">—</div>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="stage-bar"></div></div>
+      <div class="progress-dates">
+        <span>18 Mai 2026</span>
+        <span>3 Juillet 2026</span>
+      </div>
+    </div>
+
+    <div class="profil-block" style="margin-top:0;">
+      <div class="journal-header">
+        <div class="journal-ht">Carnet de suivi</div>
+      </div>
+      <div id="entries">
+        <div class="entry">
+          <div class="entry-date">Sem. 1<br>01/04</div>
+          <div><div class="entry-t">Prise en main de l'environnement</div><div class="entry-d">Installation des outils, découverte du code existant, réunion de présentation avec l'équipe.</div></div>
+          <span class="chip chip-done">terminé</span>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Sem. 2<br>08/04</div>
+          <div><div class="entry-t">Analyse des besoins</div><div class="entry-d">Lecture du cahier des charges, réunion avec le maître de stage.</div></div>
+          <span class="chip chip-done">terminé</span>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Sem. 3–4<br>15/04</div>
+          <div><div class="entry-t">Développement du module CRUD</div><div class="entry-d">Création de la base de données et développement des fonctionnalités PHP/MySQL.</div></div>
+          <span class="chip chip-doing">en cours</span>
+        </div>
+        <div class="entry">
+          <div class="entry-date">Sem. 5–6<br>29/04</div>
+          <div><div class="entry-t">Interface utilisateur</div><div class="entry-d">Intégration HTML/CSS/JS, responsive design.</div></div>
+          <span class="chip chip-todo">à faire</span>
+        </div>
+      </div>
+      <!-- Formulaire volontairement désactivé sur le portfolio public.
+           Les activités se modifient directement dans le code pour éviter qu'un visiteur puisse en ajouter. -->
+    </div>
+  </div>
+</div>
+
+<!-- VEILLE -->
+<div class="page" id="page-veille">
+  <div class="wrap">
+    <div class="page-eyebrow">Veille technologique</div>
+    <h1 class="page-title">La cryptographie <em>post-quantique</em></h1>
+    <p class="page-desc">Comment préparer la sécurité informatique aux futurs ordinateurs quantiques capables de fragiliser RSA, ECC et une partie des infrastructures actuelles.</p>
+
+    <div class="pq-hero fade">
+      <div>
+        <div class="pq-kicker">Sujet de veille</div>
+        <h3>Pourquoi c'est important ?</h3>
+        <p>La cryptographie post-quantique cherche à créer des algorithmes capables de résister aux attaques d'ordinateurs quantiques. Le risque principal concerne les systèmes actuels de chiffrement asymétrique utilisés pour HTTPS, les VPN, les signatures numériques, les certificats et les échanges de clés.</p>
+      </div>
+      <div class="pq-mini">
+        <span>RSA / ECC</span>
+        <strong>menacés</strong>
+        <small>par l'algorithme de Shor</small>
+      </div>
+    </div>
+
+    <div class="veille-grid">
+      <div class="veille-card fade">
+        <div class="vc-tag">Menace</div>
+        <div class="vc-title">Le problème quantique</div>
+        <div class="vc-body">Un ordinateur quantique suffisamment puissant pourrait casser RSA et ECC beaucoup plus vite qu'un ordinateur classique. Cela remettrait en cause l'échange de clés et les signatures numériques.</div>
+        <div class="vc-footer"><span class="vc-source">Shor · RSA · ECC</span><div class="vc-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></div>
+      </div>
+      <div class="veille-card fade">
+        <div class="vc-tag">Risque</div>
+        <div class="vc-title">Store now, decrypt later</div>
+        <div class="vc-body">Des données chiffrées peuvent être collectées aujourd'hui puis déchiffrées plus tard quand les machines quantiques seront assez avancées. Les données sensibles à longue durée de vie sont donc déjà concernées.</div>
+        <div class="vc-footer"><span class="vc-source">Données sensibles · Archivage</span><div class="vc-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+      </div>
+      <div class="veille-card fade">
+        <div class="vc-tag">Standards</div>
+        <div class="vc-title">Les algorithmes du NIST</div>
+        <div class="vc-body">Le NIST a sélectionné des standards post-quantiques comme ML-KEM pour l'échange de clés et ML-DSA pour les signatures numériques. Ils remplacent progressivement les anciens noms Kyber et Dilithium.</div>
+        <div class="vc-footer"><span class="vc-source">ML-KEM · ML-DSA · NIST</span><div class="vc-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></div>
+      </div>
+      <div class="veille-card fade">
+        <div class="vc-tag">Transition</div>
+        <div class="vc-title">Cryptographie hybride</div>
+        <div class="vc-body">Pendant la migration, les systèmes peuvent combiner un algorithme classique avec un algorithme post-quantique. L'objectif est de garder la compatibilité tout en préparant la sécurité future.</div>
+        <div class="vc-footer"><span class="vc-source">TLS · VPN · Compatibilité</span><div class="vc-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+      </div>
+      <div class="veille-card fade">
+        <div class="vc-tag">Applications</div>
+        <div class="vc-title">Impacts pour les SI</div>
+        <div class="vc-body">Les entreprises devront inventorier leurs usages cryptographiques : certificats, applications web, bases de données, sauvegardes, API, VPN, messageries et objets connectés.</div>
+        <div class="vc-footer"><span class="vc-source">Inventaire · SI · Migration</span><div class="vc-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+      </div>
+      <div class="veille-card fade">
+        <div class="vc-tag">Limites</div>
+        <div class="vc-title">Une migration complexe</div>
+        <div class="vc-body">Les nouveaux algorithmes peuvent avoir des clés ou signatures plus lourdes. Il faut tester les performances, la compatibilité et la sécurité avant de les déployer largement.</div>
+        <div class="vc-footer"><span class="vc-source">Performance · Tests · Déploiement</span><div class="vc-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJETS -->
+<div class="page" id="page-projets">
+  <div class="wrap">
+    <div class="page-eyebrow">Projets</div>
+    <h1 class="page-title">Ce que j'ai <em>réalisé</em></h1>
+    <p class="page-desc">Projets développés en formation — du jeu Java à la plateforme web dynamique.</p>
+
+    <div class="project-list">
+      <div class="project-item fade">
+        <div>
+          <div class="proj-eyebrow">Java · Programmation orientée objet</div>
+          <div class="proj-title">Jeu Pokémon</div>
+          <div class="proj-desc">Application de combat Pokémon au tour par tour en Java. Architecture entièrement orientée objet avec hiérarchie de classes, héritage et polymorphisme.</div>
+          <ul class="proj-features">
+            <li>Classes Pokémon, Attaque, Dresseur avec héritage</li>
+            <li>Système de types et tableau de faiblesses</li>
+            <li>Combat au tour par tour, gestion des points de vie</li>
+            <li>Utilisation des patterns Factory et Strategy</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="tag blue">Java</span>
+            <span class="tag blue">POO</span>
+            <span class="tag">Héritage</span>
+            <span class="tag">Polymorphisme</span>
+            <span class="tag">Interfaces</span>
+          </div>
+        </div>
+        <div class="proj-icon"></div>
+      </div>
+
+      <div class="project-item fade">
+        <div>
+          <div class="proj-eyebrow">PHP · JavaScript · AJAX · MySQL</div>
+          <div class="proj-title">Site de streaming dynamique</div>
+          <div class="proj-desc">Plateforme de streaming avec recherche en temps réel via AJAX, carousels interactifs, gestion des utilisateurs et base de données MySQL.</div>
+          <ul class="proj-features">
+            <li>Recherche dynamique sans rechargement de page (AJAX)</li>
+            <li>Carousels de contenus interactifs en JavaScript</li>
+            <li>Authentification et gestion des comptes utilisateurs</li>
+            <li>Requêtes PHP/MySQL dynamiques et sécurisées</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="tag blue">PHP</span>
+            <span class="tag">MySQL</span>
+            <span class="tag blue">AJAX</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">JSON</span>
+          </div>
+        </div>
+        <div class="proj-icon"></div>
+      </div>
+
+      <div class="project-item fade">
+        <div>
+          <div class="proj-eyebrow">HTML · CSS · JavaScript</div>
+          <div class="proj-title">Site de streaming front-end</div>
+          <div class="proj-desc">Interface front-end d'une plateforme de streaming. Accent sur le design, les animations CSS et les interactions JavaScript vanille, sans back-end.</div>
+          <ul class="proj-features">
+            <li>Design responsive mobile-first</li>
+            <li>Animations CSS3 et transitions fluides</li>
+            <li>Carousels en JavaScript natif</li>
+            <li>Thème sombre avec variables CSS custom</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="tag blue">HTML5</span>
+            <span class="tag blue">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Flexbox</span>
+            <span class="tag">CSS Grid</span>
+          </div>
+        </div>
+        <div class="proj-icon"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFIL -->
+<div class="page" id="page-profil">
+  <div class="wrap">
+    <div class="page-eyebrow">Profil</div>
+    <h1 class="page-title" style="margin-bottom:2rem">À propos <em>de moi</em></h1>
+
+    <div class="profil-layout">
+      <div class="profil-aside fade">
+        <div class="avatar">PN</div>
+        <div class="profil-name">LAROUCI Adel</div>
+        <div class="profil-role">BTS SIO · SLAM</div>
+        <div class="aside-rows">
+          <div class="aside-row">
+            <div class="aside-key">Localisation</div>
+            <div class="aside-val">Ville, France</div>
+          </div>
+          <div class="aside-row">
+            <div class="aside-key">Établissement</div>
+            <div class="aside-val">Nom du lycée</div>
+          </div>
+          <div class="aside-row">
+            <div class="aside-key">Promotion</div>
+            <div class="aside-val">2023 — 2025</div>
+          </div>
+          <div class="aside-row">
+            <div class="aside-key">Contact</div>
+            <div class="aside-val">prenom.nom@email.com</div>
+          </div>
+        </div>
+        <div class="aside-links">
+          <a class="aside-link" href="#">GitHub</a>
+          <a class="aside-link" href="#">LinkedIn</a>
+          <a class="aside-link" href="#">CV</a>
+        </div>
+      </div>
+
+      <div class="profil-main">
+        <div class="profil-block fade">
+          <div class="profil-block-title">À propos</div>
+          <p>Étudiant en BTS SIO option SLAM, je suis passionné par le développement logiciel et la cybersécurité. J'apprécie aussi bien concevoir des interfaces web modernes que travailler sur des applications Java en programmation orientée objet. Ma veille technologique porte sur la cryptographie post-quantique, un domaine important pour anticiper l'évolution de la sécurité des systèmes d'information.</p>
+        </div>
+
+        <div class="profil-block fade">
+          <div class="profil-block-title">Parcours</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-year">2023 – 2025</div>
+              <div>
+                <div class="tl-title">BTS SIO — Option SLAM</div>
+                <div class="tl-sub">Nom du lycée — Ville</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2023</div>
+              <div>
+                <div class="tl-title">Baccalauréat</div>
+                <div class="tl-sub">Lycée — Ville</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profil-block fade">
+          <div class="profil-block-title">Certifications</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-year">2024</div>
+              <div>
+                <div class="tl-title">PIX — Certification numérique</div>
+                <div class="tl-sub">Niveau avancé</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2024</div>
+              <div>
+                <div class="tl-title">Formation sécurité informatique</div>
+                <div class="tl-sub">MOOC ANSSI / OpenClassrooms</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profil-block fade">
+          <div class="profil-block-title">Centres d'intérêt</div>
+          <div class="tag-grid">
+            <span class="tag">Cybersécurité</span>
+            <span class="tag green">Développement</span>
+            <span class="tag">Gaming</span>
+            <span class="tag">Sport</span>
+            <span class="tag green">Lecture tech</span>
+            <span class="tag">Musique</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// NAV
+function go(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('n-' + name).classList.add('active');
+  window.scrollTo(0,0);
+  if (name === 'competences') animateBars('#tab-langages');
+  if (name === 'stage') initStage();
+  fadein();
+}
+
+// SKILLS TABS
+function switchTab(id) {
+  document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  animateBars('#tab-' + id);
+}
+
+function animateBars(scope) {
+  document.querySelectorAll((scope || '') + ' .bar-fill').forEach(b => {
+    const w = b.getAttribute('data-w');
+    b.style.width = '0%';
+    requestAnimationFrame(() => requestAnimationFrame(() => { b.style.width = w + '%'; }));
+  });
+}
+
+// STAGE
+function initStage() {
+  const today = new Date();
+  const start = new Date('2026-05-18');
+  const end = new Date('2026-07-03');
+
+  let pct = 0;
+  if (today >= start && today <= end) {
+    pct = Math.round(((today - start) / (end - start)) * 100);
+  } else if (today > end) {
+    pct = 100;
+  }
+
+  const bar = document.getElementById('stage-bar');
+  const lbl = document.getElementById('stage-pct');
+  if (!bar || !lbl) return;
+
+  bar.style.width = '0%';
+  lbl.textContent = pct + '%';
+  setTimeout(() => { bar.style.width = pct + '%'; }, 150);
+}
+
+// JOURNAL
+// Ajout d'activités désactivé sur la version publique du portfolio.
+
+// FADE IN
+function fadein() {
+  setTimeout(() => {
+    document.querySelectorAll('.page.active .fade').forEach((el, i) => {
+      setTimeout(() => el.classList.add('in'), i * 80);
+    });
+  }, 50);
+}
+
+// INIT
+fadein();
+animateBars();
+</script>
+</body>
+</html>
